@@ -193,10 +193,11 @@ if ! type bat >/dev/null; then
   curl -s -L https://github.com/sharkdp/bat/releases/download/v0.20.0/bat_0.20.0_amd64.deb -o /tmp/bat.deb && \
     sudo dpkg -i /tmp/bat.deb
 fi
-sudo apt-get install -y \
-  zsh zsh-syntax-highlighting \
-  silversearcher-ag \
-  ripgrep
+
+# sudo apt-get install -y \
+#  zsh zsh-syntax-highlighting \
+#  silversearcher-ag \
+#  ripgrep
 
 {{ end -}}
 
