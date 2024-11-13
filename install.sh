@@ -25,6 +25,7 @@ echo "Installing fonts."
 FONT_DIR="$HOME/.fonts"
 git clone https://github.com/powerline/fonts.git $FONT_DIR --depth=1
 cd $FONT_DIR
+
 ./install.sh
 
 echo "Setting up the Spaceship theme."
