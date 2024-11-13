@@ -1,9 +1,9 @@
 [user]
-	name = Josh Johanning
-	email = joshjohanning@github.com
-	signingkey = /Users/joshjohanning/.ssh/id_rsa.pub
+	name = Hussam Ghazzi	
+	email = hussam-i-am@github.com
+	signingkey = /Users/hussam-i-am/.ssh/id_rsa.pub
 [github]
-	user = joshjohanning
+	user = hussam-i-am
 [pager]
 	branch = false
 [pull]
