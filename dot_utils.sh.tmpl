@@ -13,11 +13,6 @@ alias gdiff="git diff --no-index"
 
 alias kcatss="kcat -X security.protocol=ssl -X enable.ssl.certificate.verification=false"
 
-which bat >/dev/null && {
-  alias cat="bat"
-  export BAT_THEME='base16'
-}
-
 {{ if .shared }}
 # configure the shell for a kube context and namespace
 kc() {
