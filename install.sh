@@ -1,28 +1,33 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e
+create_symlinks() {
+    # Get the directory in which this script lives.
+    script_dir=$(dirname "$(readlink -f "$0")")
 
-if [ ! "$(command -v chezmoi)" ]; then
-  bin_dir="$HOME/.local/bin"
-  chezmoi="$bin_dir/chezmoi"
-  if [ "$(command -v curl)" ]; then
-    sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b "$bin_dir"
-  elif [ "$(command -v wget)" ]; then
-    sh -c "$(wget -qO- https://chezmoi.io/get)" -- -b "$bin_dir"
-  else
-    echo "To install chezmoi, you must have curl or wget installed." >&2
-    exit 1
-  fi
-else
-  chezmoi=chezmoi
-fi
+    # Get a list of all files in this directory that start with a dot.
+    files=$(find -maxdepth 1 -type f -name ".*")
 
-# for shared hosts, make sure temp dir exists
-if [ -n "$GH_ENV" ] && ! [ -d ~/tmp ]; then
-  mkdir ~/tmp
-fi
+    # Create a symbolic link to each file in the home directory.
+    for file in $files; do
+        name=$(basename $file)
+        echo "Creating symlink to $name in home directory."
+        rm -rf ~/$name
+        ln -s $script_dir/$name ~/$name
+    done
+}
 
-# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
-script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
-# exec: replace current process with chezmoi init
-exec "$chezmoi" init --apply "--source=$script_dir" --verbose
+create_symlinks
+
+echo "Initializing conda for zsh."
+conda init zsh
+
+echo "Installing fonts."
+FONT_DIR="$HOME/.fonts"
+git clone https://github.com/powerline/fonts.git $FONT_DIR --depth=1
+cd $FONT_DIR
+./install.sh
+
+echo "Setting up the Spaceship theme."
+ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
