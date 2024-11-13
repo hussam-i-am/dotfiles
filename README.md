@@ -7,7 +7,3 @@ There are many [dotfiles](http://dotfiles.github.io/), but these are mine.
 ```
 ./install.sh
 ```
-
-## Organization
-
-This is a [chezmoi](https://www.chezmoi.io) repo.
