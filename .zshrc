@@ -126,6 +126,27 @@ alias '??'='gh copilot suggest -t shell'
 alias 'git?'='gh copilot suggest -t git'
 alias 'explain?'='gh copilot explain'
 
+## git aliases
+alias gch='git checkout'
+alias gm='git merge'
+alias gr='git rebase'
+alias gb='git branch'
+alias gs='git status'
+alias ga='git add -A'
+alias gc='git commit'
+alias gcl='git clone'
+alias gpl='git pull --rebase'
+alias gp='git push -u'
+alias gs='git status'
+alias gprune='git fetch --prune origin && git remote prune origin && git prune && git gc'
+alias dbm='bin/rake db:migrate db:test:prepare'
+
+ui(){ 
+ PACKAGE=$1 
+ shift 
+ npm run -w @github-ui/$PACKAGE $@ 
+}
+
 # used for gh cli auto completion
 # see: https://cli.github.com/manual/gh_completion
 [[ -d ~/.oh-my-zsh/completions ]] || mkdir ~/.oh-my-zsh/completions
