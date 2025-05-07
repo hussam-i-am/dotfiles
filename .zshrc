@@ -94,6 +94,10 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/go/bin/:$PATH"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
